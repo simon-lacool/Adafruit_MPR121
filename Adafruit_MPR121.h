@@ -81,7 +81,7 @@ class Adafruit_MPR121 {
 
   void initTouchWheel(uint8_t numWheelPads, int16_t degreeOffset);
   void takeWheelBaseline(void);
-  int16_t getWheelAngle(void);
+  double getWheelAngle(void);
   int16_t getWheelIncrement(void);
 
   boolean isButtonPressed(uint8_t channel);

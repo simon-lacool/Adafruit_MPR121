@@ -107,7 +107,7 @@ void Adafruit_MPR121::takeWheelBaseline(void) {
   }   
 }
 
-int16_t Adafruit_MPR121::getWheelAngle(void) {
+double Adafruit_MPR121::getWheelAngle(void) {
   // Retrieve difference scores
   int16_t wheelDeltas[8];
   for (uint8_t i=0; i<wheelPads; i++) {
@@ -116,7 +116,7 @@ int16_t Adafruit_MPR121::getWheelAngle(void) {
 
 
   // Display deltas (debug)
-  
+  /*
   Serial.print ("baselines: \t");
   for (uint8_t i=0; i<13; i++) {
     Serial.print(filteredData(i), DEC);
@@ -130,6 +130,7 @@ int16_t Adafruit_MPR121::getWheelAngle(void) {
     Serial.print("\t");
   } 
   Serial.println ("");
+  */
 
 
   // Find maximum delta
@@ -173,10 +174,9 @@ int16_t Adafruit_MPR121::getWheelAngle(void) {
   if (offsetPad < 0) offsetPad += wheelPads;     // Bound check incase we go negitive for half of the first wheel
   
   // Calculate the touch position (in degrees)
-  int16_t degree = floor( (offsetPad / wheelPads) * 360.0f ) - wheelDegreeOffset;
+  double degree = floor( (offsetPad / wheelPads) * 360.0f ) - wheelDegreeOffset;
   if (degree < 0) degree += 360;
   if (degree > 360) degree -= 360;
-    
   return degree;
 }
 
